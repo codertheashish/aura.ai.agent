@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura – Mood Color</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#6d5dfc;--c2:#ff7ab6;--bg:#12101c;--tx:#f3f0ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--tx);font-family:Inter,sans-serif;display:grid;place-items:center;padding:24px}
+main{width:min(520px,100%);text-align:center}
+.orb{width:220px;height:220px;border-radius:50%;margin:0 auto 28px;background:radial-gradient(circle at 35% 30%,var(--c2),var(--c1) 65%);box-shadow:0 0 90px var(--c1);transition:all .6s}
+h1{font-family:Fraunces,serif;font-size:2.6rem;margin:0 0 6px}
+p{opacity:.75;margin:0 0 22px}
+.moods{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+button{font:inherit;color:inherit;background:#ffffff14;border:1px solid #ffffff30;padding:10px 18px;border-radius:999px;cursor:pointer}
+button:hover,button:focus-visible{background:#ffffff28;outline:2px solid var(--c2)}
+#name{margin:26px 0 8px;font-weight:500;font-size:1.1rem;min-height:1.4em}
+.hist{margin-top:30px;text-align:left}
+.hist h2{font-size:1rem;font-weight:500;opacity:.8}
+.hist ul{list-style:none;padding:0;margin:0;display:flex;gap:8px;flex-wrap:wrap}
+.hist li{display:flex;align-items:center;gap:8px;font-size:.85rem;background:#ffffff10;padding:6px 12px;border-radius:999px}
+.dot{width:14px;height:14px;border-radius:50%}
+.clear{margin-top:12px;font-size:.8rem;padding:6px 12px}
+@media(prefers-reduced-motion:reduce){.orb{transition:none}}
+</style></head><body>
+<main>
+<div class="orb" id="orb"></div>
+<h1>Aura</h1>
+<p>Aaj aap kaisa feel kar rahe ho? Mood chuno, apna aura color dekho.</p>
+<div class="moods" id="moods"></div>
+<div id="name"></div>
+<section class="hist"><h2>Aapki history</h2><ul id="list"></ul><button class="clear" id="clear">History clear karo</button></section>
+</main>
+<script>
+const M={Happy:["#ffb703","#fb5607","Sunrise Gold"],Calm:["#4cc9f0","#4361ee","Ocean Blue"],Energetic:["#f72585","#ff7a00","Fire Pink"],Sad:["#5e60ce","#3a0ca3","Midnight Indigo"],Focused:["#06d6a0","#118ab2","Teal Focus"],Loved:["#ff5d8f","#ffb3c6","Rose Glow"]};
+const orb=document.getElementById('orb'),nm=document.getElementById('name'),list=document.getElementById('list');
+let hist=[];try{hist=JSON.parse(localStorage.getItem('aura-hist')||'[]')}catch(e){}
+function paint(){list.innerHTML=hist.map(h=>`<li><span class="dot" style="background:${h.c}"></span>${h.m} · ${h.t}</li>`).join('')||'<li>Abhi kuch nahi</li>'}
+function pick(m){const [a,b,n]=M[m];const r=document.documentElement.style;r.setProperty('--c1',a);r.setProperty('--c2',b);nm.textContent=m+' → '+n;
+hist.unshift({m,c:a,t:new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})});hist=hist.slice(0,8);
+try{localStorage.setItem('aura-hist',JSON.stringify(hist))}catch(e){}paint()}
+document.getElementById('moods').innerHTML=Object.keys(M).map(m=>`<button>${m}</button>`).join('');
+document.getElementById('moods').onclick=e=>{if(e.target.tagName=='BUTTON')pick(e.target.textContent)};
+document.getElementById('clear').onclick=()=>{hist=[];try{localStorage.removeItem('aura-hist')}catch(e){}paint()};
+paint();
+</script></body></html>
