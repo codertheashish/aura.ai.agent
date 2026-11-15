@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Wave from '@/components/Wave';
 import Experience from '@/components/Experience';
+import HeroAvatar from '@/components/HeroAvatar';
 import { Icon, FEATURE_ICONS, Social } from '@/components/Icons';
 import { FEATURES, CREATOR } from '@/lib/content';
 import site from '@/content/site.json';
@@ -10,14 +10,13 @@ export default function Home() {
   return (<>
     <section className="hero"><div className="wrap">
       <div>
-        <span className="badge">Installers coming soon</span>
+        <span className="badge">Desktop AI agent · Installers coming soon</span>
         <h1>Your AI. Your Voice. Your Digital Companion.</h1>
-        <p>Meet Jini — an intelligent desktop AI assistant designed to understand, communicate, and help you interact with your digital world.</p>
+        <p>Meet Jini — an intelligent desktop AI agent designed to understand, communicate, and help you interact with your digital world.</p>
         <div className="cta"><Link className="btn p" href="/getting-started">Get Started</Link><Link className="btn" href="#features">Explore Features</Link></div>
+        <p className="hint">Move your mouse — Jini follows you.</p>
       </div>
-      <div className="stage"><span className="chip a">Hindi</span><span className="chip b">Hinglish</span><span className="chip c">English</span>
-        <div className="win" aria-label="Jini assistant interface illustration"><div className="tb"><b /><b /><b /><span>Jini AI</span></div>
-          <div className="body"><div className="rings"><i /><i /><i /><div className="orb" /></div><Wave /><p className="cap">Illustration of the assistant interface</p></div></div></div>
+      <HeroAvatar />
     </div></section>
     <div className="strip"><div className="wrap">{['Voice conversation', 'Wake word', 'Push-to-talk', 'Local history', 'Web search', 'App control'].map((x) => <span key={x}>{x}</span>)}</div></div>
     <section className="section" id="experience"><div className="wrap">
@@ -35,12 +34,8 @@ export default function Home() {
       <div className="steps">{STEPS.map(([t, d], i) => <div className="card" key={t}><span className="n">{i + 1}</span><h3>{t}</h3><p>{d}</p></div>)}</div>
     </div></section>
     <section className="section alt"><div className="wrap creator">
-      <div><h2 className="t">Built by {CREATOR.name}</h2><p className="lead" style={{ margin: 0 }}>Jini is created and maintained by one developer. Say hello or follow the progress.</p></div>
+      <div className="who"><img src="/jini-icon.png" alt="" width="56" height="56" /><div><h2>Built by {CREATOR.name}</h2><p>One developer, one agent.</p></div></div>
       <Social c={CREATOR} labels />
     </div></section>
-    <section className="section"><div className="wrap"><div className="band">
-      <h2 className="t" style={{ marginBottom: 8 }}>Ready to meet Jini?</h2><p className="lead" style={{ margin: '0 auto 24px' }}>Installers are coming soon. Set up your Gemini API key while you wait.</p>
-      <div className="cta" style={{ justifyContent: 'center' }}><Link className="btn p" href="/getting-started">Get Started</Link><Link className="btn" href="/gemini-api-key">Gemini API key guide</Link></div>
-    </div></div></section>
   </>);
 }

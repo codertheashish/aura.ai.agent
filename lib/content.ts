@@ -16,7 +16,7 @@ export const FEATURES = [
   ["Web search", "Look up current information without leaving the chat."],
   ["File and productivity help", "Assist with everyday file and task work."],
   ["Plugins and tools", "Extend Jini with tool integrations."],
-  ["Avatar interface", "An interactive on-screen assistant that shows what Jini is doing."],
+  ["Avatar interface", "An interactive on-screen agent that shows what Jini is doing."],
   ["Local history in SQLite", "Conversations are saved in a database on your machine."],
 ] as const;
 export const STATES = [

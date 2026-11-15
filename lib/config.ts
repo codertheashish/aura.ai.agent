@@ -4,7 +4,7 @@ export const SITE = {
   url: "https://jini-ai-agent.vercel.app",
   tagline: "Your AI. Your Voice. Your Digital Companion.",
   description:
-    "Meet Jini — an intelligent desktop AI assistant designed to understand, communicate, and help you interact with your digital world.",
+    "Meet Jini — an intelligent desktop AI agent designed to understand, communicate, and help you interact with your digital world.",
 };
 export const DOWNLOADS: { windows: string | null; macos: string | null } = {
   windows: null, // paste the real installer URL when it exists
