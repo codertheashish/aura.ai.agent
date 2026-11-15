@@ -12,3 +12,7 @@ Every admin change is a Git commit; Vercel redeploys automatically (about a minu
 
 ## Edit manually
 `content/site.json`: download URLs (`downloads`). Social links: `CREATOR` in `lib/content.js`.
+
+## Accounts
+Google redirect URI: `https://jini-ai-agent.vercel.app/api/auth/google/callback`. Email sign-up needs the free Upstash Redis variables; Google sign-in works without it.
+Admin: open `/admin` directly (not linked on the site). Set the password with `npm run hash -- "your password"` and paste the output into `ADMIN_PASSWORD_HASH`.

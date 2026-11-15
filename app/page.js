@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Experience from '@/components/Experience';
 import HeroAvatar from '@/components/HeroAvatar';
-import { Icon, FEATURE_ICONS, WindowsIcon, AppleIcon } from '@/components/Icons';
+import { Icon, FEATURE_ICONS } from '@/components/Icons';
+import { DownloadButtons } from '@/components/Downloads';
 import { FEATURES } from '@/lib/content';
 import site from '@/content/site.json';
 const STEPS = [['Listens', 'Say the wake word or hold push-to-talk.'], ['Thinks', 'Your request goes to Gemini with your own API key, plus tools like web search when needed.'], ['Speaks', 'Jini answers out loud. Your chat history stays on your computer.']];
@@ -14,7 +15,7 @@ export default function Home() {
         <span className="badge">Desktop AI agent · Installers coming soon</span>
         <h1>Your AI. Your Voice. Your Digital Companion.</h1>
         <p>Meet Jini — an intelligent desktop AI agent designed to understand, communicate, and help you interact with your digital world.</p>
-        <div className="cta">{[['Windows', dl.windows, <WindowsIcon key="w" />], ['macOS', dl.macos, <AppleIcon key="a" />]].map(([n, u, ic], i) => <Link key={n} className={`btn dlb${i === 0 ? ' p' : ''}`} href={u || '/downloads'}>{ic}<span>Download for {n}</span>{!u && <em>Coming soon</em>}</Link>)}</div>
+        <DownloadButtons dl={dl} />
         <p className="hint">Move your mouse — Jini follows you. <Link href="#features" style={{ color: 'var(--cyan)' }}>Explore features</Link></p>
       </div>
       <HeroAvatar />
