@@ -5,6 +5,7 @@ import { NAV, CREATOR } from '@/lib/content';
 import { Social } from '@/components/Icons';
 import { Stores, DownloadMenu } from '@/components/Downloads';
 import AuthNav from '@/components/AuthNav';
+import MobileMenu from '@/components/MobileMenu';
 import site from '@/content/site.json';
 const head = Space_Grotesk({ subsets: ['latin'], variable: '--font-head' });
 const body = Inter({ subsets: ['latin'], variable: '--font-body' });
@@ -28,7 +29,7 @@ export default function Root({ children }) {
     <header className="top"><div className="wrap bar">
       <Link href="/" className="logo"><img src="/jini-icon.png" alt="" width="30" height="30" />JINI AI</Link>
       <nav className="d" aria-label="Main">{NAV.map(([h, l]) => <Link key={h} href={h}>{l}</Link>)}</nav>
-      <div className="hact"><AuthNav /><DownloadMenu dl={dl} /><details className="m"><summary>Menu</summary><div>{NAV.map(([h, l]) => <Link key={h} href={h}>{l}</Link>)}<Link href="/login">Login / Sign up</Link></div></details></div>
+      <div className="hact"><AuthNav /><DownloadMenu dl={dl} /><MobileMenu nav={NAV} /></div>
     </div></header>
     <main id="main">{children}</main>
     <footer><div className="wrap">

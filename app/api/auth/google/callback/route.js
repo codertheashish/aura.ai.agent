@@ -12,6 +12,6 @@ export async function GET(req) {
     if (!p.email || !p.email_verified) return fail();
     const email = p.email.toLowerCase(), name = String(p.name || email.split('@')[0]).slice(0, 60);
     if (dbReady()) await upsertGoogle(email, name).catch(() => {});
-    const res = NextResponse.redirect(o + '/'); setUserCookie(res, { email, name }); res.cookies.set('g_state', '', { path: '/', maxAge: 0 }); return res;
+    const nx = req.cookies.get('g_next')?.value || '/'; const res = NextResponse.redirect(o + (/^\/(?!\/)/.test(nx) ? nx : '/')); res.cookies.set('g_next', '', { path: '/', maxAge: 0 }); setUserCookie(res, { email, name }); res.cookies.set('g_state', '', { path: '/', maxAge: 0 }); return res;
   } catch { return fail(); }
 }

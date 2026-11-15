@@ -125,3 +125,5 @@ footer{background:#100c16;padding:56px 0 32px}footer .wrap{display:block}
 .or{text-align:center;color:var(--mute);font-size:.9rem;margin:16px 0}.linkbtn{background:none;border:0;color:var(--cyan);cursor:pointer;font:inherit;padding:0;text-decoration:underline}
 @media(max-width:1060px){.btn.signup{display:none}}
 @media(max-width:860px){.hact .hi{display:none}}
+button.store{width:100%;background:none;font:inherit;text-align:left;cursor:pointer}.store:hover{border-color:var(--violet)}
+.ddp .soonmsg{margin:0 0 10px}
