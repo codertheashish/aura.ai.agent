@@ -1,6 +1,6 @@
-# BABU AI website (website-only repo)
+# JINI AI website (website-only repo)
 
-Next.js 15. No database, no analytics, no payments. Never put the Babu desktop app code in this repo.
+Next.js 15. No database, no analytics, no payments. Never put the Jini desktop app code in this repo.
 
 ## Run locally
     npm install && npm run dev
@@ -11,4 +11,4 @@ GitHub token: fine-grained, this repo only, Contents read/write. Admin is at `/a
 Every admin change is a Git commit; Vercel redeploys automatically (about a minute).
 
 ## Edit manually
-`content/site.json`: download URLs (`downloads`), LinkedIn/YouTube (`creator`).
+`content/site.json`: download URLs (`downloads`). Social links: `CREATOR` in `lib/content.js`.

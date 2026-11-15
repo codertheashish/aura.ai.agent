@@ -54,3 +54,31 @@ label{font-size:.9rem;color:var(--mute)}.err{color:#ff8a9a}.ok{color:var(--cyan)
 @media(max-width:860px){.hero .wrap,.state,.dl{grid-template-columns:1fr}.grid,.gal{grid-template-columns:1fr 1fr}.card.wide{grid-column:span 2}nav.d{display:none}details.m{display:block;position:relative}details.m summary{list-style:none;cursor:pointer;padding:8px 12px;border:1px solid var(--line);border-radius:8px}details.m div{position:absolute;right:0;top:46px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 18px;min-width:180px}details.m a{display:block;padding:8px 0;text-decoration:none}.section{padding:64px 0}}
 @media(max-width:560px){.grid,.gal{grid-template-columns:1fr}.card.wide{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.4;-webkit-mask-image:radial-gradient(70% 70% at 60% 30%,#000,transparent);mask-image:radial-gradient(70% 70% at 60% 30%,#000,transparent)}
+.hero .wrap{position:relative}.hero h1{text-shadow:0 0 60px rgba(139,108,255,.4)}
+.stage{position:relative}
+.chip{position:absolute;z-index:2;padding:7px 16px;border-radius:99px;background:rgba(17,17,26,.92);border:1px solid var(--line);font-size:.82rem;color:var(--cyan);animation:float 6s ease-in-out infinite}
+.chip.a{top:-16px;left:-18px}.chip.b{top:40%;right:-18px;animation-delay:-2s;color:#b3a1ff}.chip.c{bottom:-16px;left:14%;animation-delay:-4s;color:#8fb2ff}
+@keyframes float{50%{transform:translateY(-9px)}}
+.rings{position:relative;width:170px;height:170px;margin:0 auto 16px;display:grid;place-items:center}
+.rings i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(139,108,255,.5);animation:ring 3.6s ease-out infinite}
+.rings i:nth-child(2){animation-delay:-1.2s}.rings i:nth-child(3){animation-delay:-2.4s}
+@keyframes ring{from{transform:scale(.55);opacity:1}to{transform:scale(1.2);opacity:0}}
+.rings .orb{margin:0}
+.strip{border-block:1px solid var(--line);background:#0a0a11;padding:18px 0;color:var(--mute);font-size:.92rem}
+.strip .wrap{display:flex;gap:10px 36px;justify-content:center;flex-wrap:wrap}
+.strip span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cyan);margin-right:10px;vertical-align:middle}
+.alt{background:#0a0a11;border-block:1px solid var(--line)}
+.card{transition:border-color .25s,transform .25s,box-shadow .25s}
+.card:hover{border-color:var(--violet);transform:translateY(-3px);box-shadow:0 18px 50px -24px var(--violet)}
+.card.wide{background:linear-gradient(135deg,rgba(139,108,255,.2),rgba(77,134,255,.07) 60%,var(--panel))}
+.ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(139,108,255,.15);color:var(--cyan);margin-bottom:16px;border:1px solid rgba(139,108,255,.3)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.n{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:linear-gradient(120deg,var(--violet),var(--blue));font:700 1rem var(--font-head);margin-bottom:16px}
+.creator{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.socs{display:flex;gap:10px;flex-wrap:wrap}
+.soc{display:inline-flex;align-items:center;gap:10px;min-width:44px;height:44px;padding:0 13px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--text);text-decoration:none;font-size:.92rem;justify-content:center;transition:border-color .2s,transform .2s,color .2s}
+footer .soc{margin:0}.soc:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.band{text-align:center;border:1px solid #3a2f7a;border-radius:24px;padding:64px 24px;background:radial-gradient(60% 120% at 50% 0%,rgba(139,108,255,.28),transparent),var(--panel)}
+@media(max-width:860px){.steps{grid-template-columns:1fr}.chip.a{left:0}.chip.b{right:0}}

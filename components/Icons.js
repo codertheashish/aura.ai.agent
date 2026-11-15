@@ -1,0 +1,16 @@
+const P = { mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3', globe: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18', spark: 'M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z', wave: 'M3 12h2M8 7v10M12 4v16M16 8v8M20 12h1', bolt: 'M13 2L4 14h7l-1 8 9-12h-7z', brain: 'M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 3 3 3 0 0 0 2 3 3 3 0 0 0 3 4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 3 3 3 0 0 1-2 3 3 3 0 0 1-3 4zM12 4v16', cal: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4', monitor: 'M3 4h18v12H3zM8 20h8M12 16v4', search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5', folder: 'M3 6h6l2 2h10v11H3z', plug: 'M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4', avatar: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21a8 8 0 0 1 16 0' };
+export const FEATURE_ICONS = ['mic', 'globe', 'spark', 'wave', 'bolt', 'brain', 'cal', 'monitor', 'search', 'folder', 'plug', 'avatar'];
+export const Icon = ({ n, size = 22 }) => <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={P[n]} /></svg>;
+const GH = 'M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.500 11.500 0 0 1 6 0C17.300 4.700 18.300 5 18.300 5c.7 1.700.2 2.900.1 3.200.8.800 1.200 1.900 1.200 3.200 0 4.600-2.800 5.600-5.500 5.900.4.400.8 1.100.8 2.200v3.300c0 .3.2.7.8.6A12 12 0 0 0 12 .3z';
+const LI = 'M20.400 20.500h-3.600v-5.600c0-1.300 0-3-1.800-3s-2.100 1.400-2.100 2.900v5.700H9.400V9h3.400v1.600c.5-.9 1.600-1.900 3.400-1.900 3.600 0 4.300 2.400 4.300 5.500zM5.300 7.400a2.100 2.100 0 1 1 0-4.200 2.100 2.100 0 0 1 0 4.200zM7.100 20.500H3.600V9h3.500zM22.200 0H1.800C.8 0 0 .8 0 1.700v20.600c0 .9.8 1.700 1.800 1.700h20.400c1 0 1.800-.8 1.800-1.700V1.700C24 .8 23.200 0 22.200 0z';
+const G = {
+  GitHub: <path d={GH} fill="currentColor" />, LinkedIn: <path d={LI} fill="currentColor" />,
+  Instagram: <g fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.500" cy="6.500" r=".6" fill="currentColor" /></g>,
+  Email: <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="3" /><path d="M3 7l9 6 9-6" /></g>,
+  YouTube: <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="4" /><path d="M10 9l5 3-5 3z" /></g>,
+};
+export function Social({ c, labels }) {
+  const items = [['Email', 'mailto:' + c.email], ['GitHub', c.github], ['LinkedIn', c.linkedin], ['Instagram', c.instagram]];
+  if (c.youtube) items.push(['YouTube', c.youtube]);
+  return <div className="socs">{items.map(([n, h]) => <a key={n} className="soc" href={h} aria-label={n} {...(h.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">{G[n]}</svg>{labels && <span>{n}</span>}</a>)}</div>;
+}
