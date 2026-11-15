@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import PasswordInput from '@/components/PasswordInput';
 const CATS = ['Listening', 'Thinking', 'Speaking', 'Gallery'];
 export default function Admin() {
   const [data, setData] = useState(null); const [msg, setMsg] = useState(''); const [pw, setPw] = useState(''); const [busy, setBusy] = useState(false);
@@ -17,8 +18,8 @@ export default function Admin() {
   async function addTut(e) { e.preventDefault(); const f = new FormData(e.target); await edit('tutorials', { title: f.get('title'), url: f.get('url'), published: f.get('pub') === 'on' }, 'Tutorial saved.'); e.target.reset(); }
   const wrap = { maxWidth: 820, margin: '0 auto', padding: '48px 24px' };
   if (data === null) return <div style={wrap}>Loading…</div>;
-  if (data === false) return (<form style={{ ...wrap, maxWidth: 420 }} onSubmit={login}><h1>Admin login</h1>
-    <label htmlFor="pw">Password</label><input id="pw" type="password" autoComplete="current-password" value={pw} onChange={(e) => setPw(e.target.value)} required />
+  if (data === false) return (<form className="card" style={{ ...wrap, maxWidth: 420, margin: '64px auto' }} onSubmit={login}><h1>Admin login</h1>
+    <label htmlFor="pw">Password</label><PasswordInput id="pw" autoComplete="current-password" value={pw} onChange={(e) => setPw(e.target.value)} required />
     <button className="btn p" disabled={busy}>Sign in</button><p role="alert" className="err">{msg}</p></form>);
   return (<div style={wrap}><h1>Admin</h1><button className="btn" onClick={logout}>Sign out</button>
     <p role="status" className={msg.startsWith('Uploaded') || msg.startsWith('Saved') || msg === 'Deleted.' || msg.startsWith('Tutorial') ? 'ok' : 'err'}>{msg}</p>

@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { verifyPassword, makeToken, COOKIE, sameOrigin } from '@/lib/auth';
+import { verifyPassword, makeToken, COOKIE, sameOrigin, adminConfigError } from '@/lib/auth';
 const tries = new Map(); // best-effort limiter (per serverless instance)
 export async function POST(req) {
   if (!sameOrigin(req)) return NextResponse.json({ error: 'Bad origin' }, { status: 403 });
+  const ce = adminConfigError(); if (ce) return NextResponse.json({ error: ce }, { status: 500 });
   const ip = (req.headers.get('x-forwarded-for') || 'x').split(',')[0].trim();
   const t = tries.get(ip) || { n: 0, at: Date.now() };
   if (Date.now() - t.at > 900000) { t.n = 0; t.at = Date.now(); }
