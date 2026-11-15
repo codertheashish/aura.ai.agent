@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import { isAdmin, sameOrigin } from '@/lib/auth';
 import { readSite, saveSite, put, del } from '@/lib/github';
 const CATS = ['Listening', 'Thinking', 'Speaking', 'Gallery'];
-const MAX = 3 * 1024 * 1024; // Vercel request limit is ~4.5MB
+const MAX = 4 * 1024 * 1024; // Vercel request limit is ~4.5MB
 const err = (m, s = 400) => NextResponse.json({ error: m }, { status: s });
 async function guard(req, write) {
   if (!(await isAdmin())) return err('Unauthorized', 401);
@@ -29,7 +29,7 @@ export async function POST(req) { // upload screenshot
     if (!title) return err('Title is required.');
     if (!CATS.includes(category)) return err('Invalid category.');
     if (!file || typeof file === 'string') return err('Choose an image.');
-    if (file.size > MAX) return err('Image must be under 3 MB.');
+    if (file.size > MAX) return err('Image must be under 4 MB.');
     const buf = Buffer.from(await file.arrayBuffer()); const t = sniff(buf);
     if (!t || file.type !== t[0]) return err('Only real PNG, JPG or WebP images are allowed.');
     const id = crypto.randomBytes(6).toString('hex'), path = `public/uploads/${id}.${t[1]}`;
